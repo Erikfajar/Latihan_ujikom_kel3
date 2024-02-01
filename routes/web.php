@@ -23,10 +23,23 @@ use App\Http\Controllers\DataUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// ROUTE LOGIN
+Route::get('/',[AuthController::class, 'index'])->name('login');
+Route::post('/auth',[AuthController::class, 'auth'])->name('auth');
+
+// ROUTE SETELAH LOGIN
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+    Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+    Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('data_buku',DataBukuController::class);
+    Route::resource('peminjaman',PeminjamanController::class);
+    Route::resource('data_user',DataUserController::class);
+    Route::resource('ulasan_buku',UlasanBukuController::class);
+});
 
 
 
