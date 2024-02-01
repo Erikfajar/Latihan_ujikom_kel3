@@ -92,8 +92,8 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('ulasan_buku.modal_edit')
                             @endforeach
-                            @include('ulasan_buku.modal_edit')
                             </tbody>
                         </table>
                     </div>
