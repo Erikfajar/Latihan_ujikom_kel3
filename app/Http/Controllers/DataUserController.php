@@ -15,7 +15,6 @@ class DataUserController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -36,7 +35,6 @@ class DataUserController extends Controller
      */
     public function store(Request $request)
     {
-       
     }
 
     /**
@@ -70,7 +68,6 @@ class DataUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
     }
 
     /**
@@ -81,6 +78,5 @@ class DataUserController extends Controller
      */
     public function destroy($id)
     {
-       
     }
 }
