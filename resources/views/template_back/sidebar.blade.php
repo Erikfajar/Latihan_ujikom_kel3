@@ -4,17 +4,17 @@
 			<div class="sticky">
 				<aside class="app-sidebar sidebar-scroll">
 					<div class="main-sidebar-header active">
-						<a class="desktop-logo logo-light active" href="index.html"><img src="{{ asset('images/logo_kelompokpng.png') }}" class="main-logo" alt="logo"></a>
-						<a class="desktop-logo logo-dark active" href="index.html"><img src="{{ asset('back') }}/assets/img/brand/logo-white.png" class="main-logo" alt="logo"></a>
-						<a class="logo-icon mobile-logo icon-light active" href="index.html"><img src="{{ asset('back') }}/assets/img/brand/favicon.png" alt="logo"></a>
-						<a class="logo-icon mobile-logo icon-dark active" href="index.html"><img src="{{ asset('back') }}/assets/img/brand/favicon-white.png" alt="logo"></a>
+						<a class="desktop-logo logo-light active" href="#"><img src="{{ asset('back/img/logo_kel3.png') }}" class="main-logo" alt="logo"></a>
+						<a class="desktop-logo logo-dark active" href="#"><img src="{{ asset('back') }}/assets/img/brand/logo-white.png" class="main-logo" alt="logo"></a>
+						<a class="logo-icon mobile-logo icon-light active" href="#"><img src="{{ asset('back') }}/assets/img/brand/favicon.png" alt="logo"></a>
+						<a class="logo-icon mobile-logo icon-dark active" href="#"><img src="{{ asset('back') }}/assets/img/brand/favicon-white.png" alt="logo"></a>
 					</div>
 					<div class="main-sidemenu">
 						<div class="main-sidebar-loggedin">
 							<div class="app-sidebar__user">
 								<div class="dropdown user-pro-body text-center">
 									<div class="user-pic">
-										<img src="{{asset('images/no-user.png')}}" alt="user-img" class="rounded-circle mCS_img_loaded">
+										<img src="{{asset('back/img/3.png')}}" alt="user-img" class="rounded-circle mCS_img_loaded">
 									</div>
 									<div class="user-info">
 										<h6 class=" mb-0 text-dark">Kelompok 3</h6>

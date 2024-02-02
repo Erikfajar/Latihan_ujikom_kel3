@@ -45,11 +45,11 @@
                             </div>
                          
                             <div class="dropdown main-profile-menu nav nav-item nav-link">
-                                <a class="profile-user d-flex" href=""><img src="{{ asset('') }}/back/img/faces/6.jpg" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
+                                <a class="profile-user d-flex" href=""><img src="{{ asset('back/img/3.png') }}" alt="user-img" class="rounded-circle mCS_img_loaded"><span></span></a>
 
                                 <div class="dropdown-menu">
                                     <div class="main-header-profile header-img">
-                                        <div class="main-img-user"><img alt="" src="../assets/img/faces/6.jpg"></div>
+                                        <div class="main-img-user"><img alt="" src="{{ asset('back/img/3.png') }}"></div>
                                         <h6>Petey Cruiser</h6><span>Premium Member</span>
                                     </div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
