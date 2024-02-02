@@ -31,19 +31,19 @@
 						<div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/></svg></div>
 						<ul class="side-menu ">
 							<li class="slide">
-								<a class="side-menu__item {{ request()->is('dashboard')? 'active':'' }}" href=""><i class="side-menu__icon fe fe-trending-up"></i><span class="side-menu__label">Dashboard</span></a>
+								<a class="side-menu__item {{ request()->is('dashboard')? 'active':'' }}" href="{{ route('dashboard') }}"><i class="side-menu__icon fe fe-trending-up"></i><span class="side-menu__label">Dashboard</span></a>
 							</li>
 							<li class="slide">
-								<a class="side-menu__item {{ request()->is('dashboard/data_buku') || request('dashboard/data_buku/peminjaman')? 'active':'' }}" href=""><i class="side-menu__icon fe fe-book"></i><span class="side-menu__label">Buku</span></a>
+								<a class="side-menu__item {{ request()->is('dashboard/data_buku') || request('dashboard/data_buku/peminjaman')? 'active':'' }}" href="{{ route('data_buku.index') }}"><i class="side-menu__icon fe fe-book"></i><span class="side-menu__label">Buku</span></a>
 							</li>
 							<li class="slide">
-								<a class="side-menu__item {{ request()->is('dashboard/peminjaman')? 'active':'' }}" href=""><i class="side-menu__icon fe fe-share"></i><span class="side-menu__label">Peminjaman</span></a>
+								<a class="side-menu__item {{ request()->is('dashboard/peminjaman')? 'active':'' }}" href="{{ route('peminjaman.index') }}"><i class="side-menu__icon fe fe-share"></i><span class="side-menu__label">Peminjaman</span></a>
 							</li>
 							<li class="slide">
-								<a class="side-menu__item {{ request()->is('dashboard/data_user')? 'active':'' }}" href=""><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Data User</span></a>
+								<a class="side-menu__item {{ request()->is('dashboard/data_user')? 'active':'' }}" href="{{ route('data_user.index') }}"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Data User</span></a>
 							</li>
 							<li class="slide">
-								<a class="side-menu__item {{ request()->is('dashboard/ulasan_buku')? 'active':'' }}" href=""><i class="side-menu__icon si si-bubbles"></i><span class="side-menu__label">Ulasan Buku</span></a>
+								<a class="side-menu__item {{ request()->is('dashboard/ulasan_buku')? 'active':'' }}" href="{{ route('ulasan_buku.index') }}"><i class="side-menu__icon si si-bubbles"></i><span class="side-menu__label">Ulasan Buku</span></a>
 							</li>
 						
 						
