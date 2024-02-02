@@ -15,8 +15,10 @@ class DataUserController extends Controller
      */
     public function index()
     {
+
         $dtUser = User::orderBy('id','desc')->get();
         return view('data_user.index',compact('dtUser'));
+
     }
 
     /**
@@ -37,6 +39,7 @@ class DataUserController extends Controller
      */
     public function store(Request $request)
     {
+
         Session::flash('username',$request->username);
         Session::flash('email',$request->email);
         Session::flash('password',$request->password);
@@ -69,6 +72,7 @@ class DataUserController extends Controller
 
         User::create($data);
         return back()->with('success','Data user berhasil di simpan');
+
     }
 
     /**
@@ -134,6 +138,7 @@ class DataUserController extends Controller
 
         User::where('id', $id)->update($data);
         return back()->with('success','Data User berhasil di ubah');
+
     }
 
     /**
@@ -146,5 +151,6 @@ class DataUserController extends Controller
     {
         User::find($id)->delete();
         return back()->with('success','Data user berhasil di hapus');
+
     }
 }
