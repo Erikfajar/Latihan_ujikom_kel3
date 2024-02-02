@@ -66,6 +66,7 @@
                                 <ul>
                                     <li>
                                         <strong>Total</strong>
+                                        <span>{{$total_user}}</span>
                                         <span>-</span>
                                     </li>
                                 </ul>
@@ -88,6 +89,7 @@
                                 <ul>
                                     <li>
                                         <strong>Total</strong>
+                                        <span>{{$total_kategoribuku_relasi}}</span>
                                         <span>-</span>
                                     </li>
                                 </ul>
@@ -110,6 +112,7 @@
                                 <ul>
                                     <li>
                                         <strong>Total</strong>
+                                        <span>{{$total_peminjaman}}</span>
                                         <span>-</span>
                                     </li>
                                 </ul>
