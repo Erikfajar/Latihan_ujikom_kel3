@@ -2,14 +2,12 @@
 @section('title', 'Dashboard')
 @section('content')
 
-@php
-    $isrole=auth()->user()->isrole;
-@endphp
+
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div>
-            <h4 class="content-title mb-2">Hi, welcome back! @auth {{ auth()->user()->name }} @endauth</h4>
+            <h4 class="content-title mb-2">Hi, welcome back! @auth {{ auth()->user()->nama_lengkap }} @endauth</h4>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a   href="{{route('dashboard')}}">Dashboard</a></li>
@@ -171,142 +169,6 @@
     </div>
 </div>
 
-<script>
-    Highcharts.setOptions({
-        colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-            return {
-                radialGradient: {
-                    cx: 0.5,
-                    cy: 0.3,
-                    r: 0.7
-                },
-                stops: [
-                    [0, color],
-                    [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
-                ]
-            };
-        })
-    });
 
-    // Build the chart
-    Highcharts.chart('grafik_kategoribarang', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Grafik Jumlah Data Barang per Kategori',
-        },
-        subtitle: {
-            text: 'Tahun {{date('Y')}}'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}% | {point.y} data</b>'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: 'data'
-            }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<span style="font-size: 1.2em"><b>{point.name}</b></span><br>' +
-                        '<span style="opacity: 0.6">{point.percentage:.1f} % | {point.y} data</span>',
-                    connectorColor: 'rgba(128,128,128,0.5)'
-                }
-            }
-        },
-        series: [{
-            name: 'jumlah',
-            data: [
-                {!!$dataGrafikA!!}
-            ]
-        }]
-    });
-
-</script>
-<script>
-    // Build the chart
-    Highcharts.chart('grafik_rangeharga', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Grafik Jumlah Data Barang Berdasarkan Range Harga Jual ',
-        },
-        subtitle: {
-            text: 'Tahun {{date('Y')}}'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}% | {point.y} data</b>'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: 'data'
-            }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<span style="font-size: 1.2em"><b>{point.name}</b></span><br>' +
-                        '<span style="opacity: 0.6">{point.percentage:.1f} % | {point.y} data</span>',
-                    connectorColor: 'rgba(128,128,128,0.5)'
-                }
-            }
-        },
-        series: [{
-            name: 'jumlah',
-            data: [
-                {!!$dataGrafikB!!}
-            ]
-        }]
-    });
-
-</script>
-<script>
-    Highcharts.chart('grafik_perbulan', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Grafik Jumlah Data Barang per Bulan'
-        },
-        subtitle: {
-            text: 'Tahun {{date('Y')}}'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            title: {
-                text: 'Jumlah Barang'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
-            }
-        },
-        series: [{
-            name: 'Semua Barang',
-            data: [{!!$dataGrafikC!!}]
-        }, ]
-    });
-</script>
 
 @endsection
