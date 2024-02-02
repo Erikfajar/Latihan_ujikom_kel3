@@ -52,7 +52,7 @@
                                         <div class="main-img-user"><img alt="" src="../assets/img/faces/6.jpg"></div>
                                         <h6>Petey Cruiser</h6><span>Premium Member</span>
                                     </div>
-                                    <a class="dropdown-item" href=""><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                                 </div>
                             </div>
                             <div class="dropdown main-header-message right-toggle">
