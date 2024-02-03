@@ -17,8 +17,8 @@
 										<img src="{{asset('back/img/3.png')}}" alt="user-img" class="rounded-circle mCS_img_loaded">
 									</div>
 									<div class="user-info">
-										<h6 class=" mb-0 text-dark">Kelompok 3</h6>
-										<span class="text-muted app-sidebar__user-name text-sm">Administrator</span>
+										<h6 class=" mb-0 text-dark">{{ Auth::user()->nama_lengkap }}</h6>
+										<span class="text-muted app-sidebar__user-name text-sm">{{ Auth::user()->role }}</span>
 									</div>
 								</div>
 							</div>
@@ -44,6 +44,15 @@
 							</li>
 							<li class="slide">
 								<a class="side-menu__item {{ request()->is('dashboard/ulasan_buku')? 'active':'' }}" href="{{ route('ulasan_buku.index') }}"><i class="side-menu__icon si si-bubbles"></i><span class="side-menu__label">Ulasan Buku</span></a>
+							</li>
+							<li class="slide">
+								<a class="side-menu__item {{ request()->is('dashboard/kategori_buku')? 'active':'' }}" href="{{ route('kategori_buku.index') }}"><i class="side-menu__icon fab fa-stack-overflow"></i><span class="side-menu__label">Kategori Buku</span></a>
+							</li>
+							<li class="slide">
+								<a class="side-menu__item {{ request()->is('dashboard/kategori_buku_relasi')? 'active':'' }}" href="{{ route('kategori_buku_relasi.index') }}"><i class="side-menu__icon fab fa-stack-overflow"></i><span class="side-menu__label">Kategori Buku Relasi</span></a>
+							</li>
+							<li class="slide">
+								<a class="side-menu__item {{ request()->is('dashboard/koleksi_pribadi')? 'active':'' }}" href="{{ route('koleksi_pribadi.index') }}"><i class="side-menu__icon far fa-thumbs-up"></i><span class="side-menu__label">Kolekasi Pribadi</span></a>
 							</li>
 						
 						

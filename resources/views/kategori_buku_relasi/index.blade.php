@@ -1,5 +1,5 @@
 @extends('template_back.content')
-@section('title', 'Data Buku')
+@section('title', 'Data Kategori Buku')
 @section('content')
 
     <!-- container opened -->
@@ -8,11 +8,11 @@
         <!-- breadcrumb -->
         <div class="breadcrumb-header justify-content-between">
             <div>
-                <h4 class="content-title mb-2">Data Buku</h4>
+                <h4 class="content-title mb-2">Data Kategori Buku Relasi</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item text-white active">Data Buku</li>
+                        <li class="breadcrumb-item text-white active">Data Kategori Buku Relasi</li>
                     </ol>
                 </nav>
             </div>
@@ -26,12 +26,13 @@
                     <div class="pd-t-10 pd-s-10 pd-e-10 bg-white bd-b">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Data Buku</p>
+                                <p>Data Kategori Buku Relasi</p>
                             </div>
                             <div class="col-md-6">
                                 <div class="d-flex my-auto btn-list justify-content-end">
-                                    <a class="modal-effect btn-sm btn btn-primary" data-bs-effect="effect-rotate-bottom"
-                                        data-bs-toggle="modal" href="#modaldemo8"><i class="fa fa-plus"></i> Tambah</a>
+                                    {{-- <a class="modal-effect btn-sm btn btn-primary" data-bs-effect="effect-rotate-bottom"
+                                        data-bs-toggle="modal" href="#modaldemo8"><i class="fa fa-plus"></i> Tambah</a> --}}
+                                        <a href="{{ route('kategori_buku_relasi.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a></a>
                                     <button onclick="formImport()" class="btn btn-sm btn-secondary"><i
                                             class="fa fa-upload me-2"></i> Import</button>
                                     <div class="dropdown">
@@ -70,57 +71,32 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center" width="20px">No</th>
-                                        <th style="text-align: center" width="50px">Judul</th>
-                                        <th style="text-align: center" width="50px">Penulis</th>
-                                        <th style="text-align: center" width="120px">Penerbit</th>
-                                        <th style="text-align: center" width="80px">Tahun Terbit</th>
-                                        <th style="text-align: center" width="120px">Action</th>
+                                        <th style="text-align: center" width="120px">Buku</th>
+                                        <th style="text-align: center" width="120px">Kategori</th>
+                                        <th style="text-align: center" width="80px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1; @endphp
-                                    @foreach ($dtBuku as $dt)
+                                    @foreach ($dtKategoriRelasi as $dt)
                                         <tr>
                                             <td style="text-align: center">{{ $no++ }}</td>
-                                            <td style="text-align: center">{{ $dt->judul ?? '' }}</td>
-                                            <td style="text-align: center">{{ $dt->penulis ?? '' }}</td>
-                                            <td style="text-align: center">{{ $dt->penerbit ?? '' }}</td>
-                                            <td style="text-align: center">{{ $dt->tahun_terbit ?? '' }}</td>
-                                            {{-- <td>{{isset($dt->created_at)?$Tanggal->ind($dt->created_at??'','/'):''}}</td> --}}
+                                            <td style="text-align: center">{{ $dt->buku->judul ?? '' }}</td>
+                                            <td style="text-align: center">{{ $dt->kategori->nama_kategori ?? '' }}</td>
                                             <td style="text-align: center">
-                                                <a class="modal-effect btn-sm btn btn-info"
-                                                    data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal"
-                                                    href="#modaldemo8{{ $dt->id }}"><i class="fa fa-edit"
-                                                        data-bs-toggle="tooltip" title="Update"></i></a>
-                                                {{-- <a class="modal-effect btn-sm btn btn-info" data-bs-effect="effect-rotate-bottom" data-bs-toggle="modal" href="#modaldemo8{{ $dt->id }}"><i class="fa fa-edit"></i></a> --}}
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('data_buku.destroy', $dt->id) }}" method="POST"
+                                                    action="{{ route('kategori_buku.destroy', $dt->id) }}" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-
+                                                    <a href="{{ route('kategori_buku_relasi.edit',$dt->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-sm btn-danger"><i
                                                             class="fa fa-trash" data-bs-toggle="tooltip"
                                                             title="Delete"></i></button>
-
-                                                    <a href="{{ route('peminjaman.show', $dt->id) }}"
-                                                        class="btn btn-sm btn-warning"><i class="ti-agenda"
-                                                            data-bs-toggle="tooltip" title="Pinjam Buku"></i></a>
-                                                    <a href="{{ route('ulasan_buku.show', $dt->id) }}"
-                                                        class="btn btn-sm btn-secondary"><i class="fab fa-twitch"
-                                                            data-bs-toggle="tooltip" title="Ulasan Buku"></i></a>
-                                                          
-                                                
-                                                </form>
-                                                <form class="d-inline"  onsubmit="return confirm('Apakah Anda Yakin Mau Menambahkan Ke Daftar Koleksi?')" action="{{ route('kolekasi_pribadi_simpan',$dt->id) }}" method="post">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-success"><i
-                                                        class="far fa-thumbs-up" data-bs-toggle="tooltip"
-                                                        title="Koleksi Pribadi"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        @include('data_buku.modal_edit')
+                                   
                                     @endforeach
                                 </tbody>
                             </table>
@@ -130,31 +106,12 @@
             </div>
 
         </div>
-        @include('data_buku.modal_create')
-        @include('data_buku.modal_import')
+    
 
     </div>
+
+    
     <!-- /container -->
-
-    {{-- <script>
-        $(function() {
-            'use strict'
-            // showing modal with effect
-            $('.modal-effect').on('click', function(e) {
-                e.preventDefault();
-                var effect = $(this).attr('data-bs-effect');
-                $('#modaldemo8{{ $dt->id }}').addClass(effect);
-            });
-            // hide modal with effect
-            $('#modaldemo8{{ $dt->id }}').on('hidden.bs.modal', function(e) {
-                $(this).removeClass(function(index, className) {
-                    return (className.match(/(^|\s)effect-\S+/g) || []).join(' ');
-                });
-            });
-
-        });
-    </script> --}}
-
 
     <script>
         $(function() {

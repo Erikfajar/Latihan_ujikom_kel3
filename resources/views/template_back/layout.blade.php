@@ -269,6 +269,9 @@
     <!--- sticky js --->
     <script src="{{ asset('') }}back/js/sticky.js"></script>
 
+	<!--- Select2.min js --->
+	<script src="{{asset('')}}back/plugins/select2/js/select2.min.js"></script>
+
     <!-- right-sidebar js -->
     <script src="{{ asset('') }}back/plugins/sidebar/sidebar.js"></script>
     <script src="{{ asset('') }}back/plugins/sidebar/sidebar-custom.js"></script>
