@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KolekasiPribadi extends Model
+class KoleksiPribadi extends Model
 {
     use HasFactory;
-    protected $table = "kolekasi_pribadi";
+    protected $table = "koleksi_pribadi";
     protected $guarded = ['id'];
 
     // RELASI ANTAR TABLE

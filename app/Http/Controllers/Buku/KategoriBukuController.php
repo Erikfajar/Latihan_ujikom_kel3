@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Buku;
 
 use App\Http\Controllers\Controller;
+use App\Models\KategoriBuku;
 use Illuminate\Http\Request;
 
-class KolesiPribadiController extends Controller
+class KategoriBukuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class KolesiPribadiController extends Controller
      */
     public function index()
     {
-        //
+        $dtKategori = KategoriBuku::orderBy('id','desc')->get();
+        return view('kategori_buku.index',compact('dtKategori'));
     }
 
     /**
