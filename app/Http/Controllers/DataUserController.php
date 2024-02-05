@@ -159,7 +159,12 @@ class DataUserController extends Controller
     public function confirm(Request $request, $id)
     {
 
-        $dtUser = User::find($id);
+        // $dtUser = User::find($id);
+        
+        $data = ['verifikasi' => 'sudah'];
+       
+        User::where('id',$id)->update($data);
+        return back()->with('success');
 
     }
 

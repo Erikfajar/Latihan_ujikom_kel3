@@ -17,7 +17,14 @@ class AuthController extends Controller
 
     public function auth(Request $request)
     {
-        // dd($request);
+        $email = $request->input('email'); // MENGAMBIL NILAI INPUR EMAIL
+        $cariEmail = User::where('email', $email)->first(); // MEMANGGIL SEMUA DATA YANG TELAH DI DAPAT
+        $cariVerifikasi = $cariEmail->verifikasi; // MENGECEK DATA DARI COLUMN VERIFIKASI
+        
+        // KONDISI KALO $CARIVARIFIKASI TIDAK SAMA DENGAN SUDAH MAKA BISA LOGIN
+        if($cariVerifikasi !== 'sudah'){
+            return back()->with('success','Akun anda belum di Aktivasi');
+        }
         $validasi = $request->validate(
             [
                 'email' => 'required',

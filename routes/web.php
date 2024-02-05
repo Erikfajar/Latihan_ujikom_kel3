@@ -43,7 +43,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('data_buku', DataBukuController::class);
     Route::resource('peminjaman', PeminjamanController::class);
     Route::resource('data_user', DataUserController::class);
-    Route::post('data_user_confirm',[DataUserController::class, 'confirm'])->name('data_user_confirm');
+    Route::post('data_user_confirm/{id}',[DataUserController::class, 'confirm'])->name('data_user_confirm');
     Route::resource('ulasan_buku', UlasanBukuController::class);
     Route::resource('kategori_buku', KategoriBukuController::class);
     Route::resource('koleksi_pribadi', KoleksiPribadiController::class);
