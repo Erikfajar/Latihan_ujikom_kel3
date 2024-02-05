@@ -17,7 +17,7 @@ class DataUserController extends Controller
     {
         $dtUserPending = User::where('verifikasi','belum')->latest()->get();
         $dtUser = User::where('verifikasi','sudah')->orderBy('id','desc')->get();
-        return view('data_user.index',compact('dtUser'));
+        return view('data_user.index',compact('dtUser','dtUserPending'));
     }
 
     /**
@@ -155,4 +155,12 @@ class DataUserController extends Controller
         User::find($id)->delete();
         return back()->with('success', 'Data user berhasil di hapus');
     }
+
+    public function confirm(Request $request, $id)
+    {
+
+        $dtUser = User::find($id);
+
+    }
+
 }

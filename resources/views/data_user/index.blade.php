@@ -72,37 +72,35 @@
                                         <th width="20px">No</th>
                                         <th width="50px">Username</th>
                                         <th width="50px">Email</th>
-                                        <th width="120px">Nama Lengap</th>
+                                        <th width="120px">Nama Lengkap</th>
+                                        <th width="120px">Hak Akses</th>
                                         <th width="120px">Alamat</th>
 
-                                        <th width="80px">Action</th>
+                                        <th width="80px" style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1; @endphp
-                                    @foreach ($dtUser as $dt)
+                                    @foreach ($dtUserPending as $dtPending)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $dt->username ?? '' }}</td>
-                                            <td>{{ $dt->email ?? '' }}</td>
-                                            <td>{{ $dt->nama_lengkap ?? '' }}</td>
-                                            <td>{{ $dt->alamat ?? '' }}</td>
+                                            <td>{{ $dtPending->username ?? '' }}</td>
+                                            <td>{{ $dtPending->email ?? '' }}</td>
+                                            <td>{{ $dtPending->nama_lengkap ?? '' }}</td>
+                                            <td>{{ $dtPending->role ?? '' }}</td>
+                                            <td>{{ $dtPending->alamat ?? '' }}</td>
 
-                                            <td>
-                                                <a class="modal-effect btn-sm btn btn-info"
-                                                    data-bs-effect="effect-rotate-left" data-bs-toggle="modal"
-                                                    href="#modaldemo9{{ $dt->id }}"><i class="fa fa-edit"></i></a>
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('data_user.destroy', $dt->id) }}" method="POST"
-                                                    class="d-inline">
+                                            <td style="text-align: center">
+                                                <form action="{{ route('data_user_confirm',$dtPending->id) }}" method="post" class="d-inline">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger"><i
-                                                            class="fa fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-sm btn-outline-success"><i class="fa fa-check fa-lg"></i></button>
+                                                </form>
+                                                <form action="" method="post" class="d-inline">
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-times fa-lg"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        @include('data_user.modal_edit')
+                                    
                                     @endforeach
                                 </tbody>
                             </table>
