@@ -15,8 +15,8 @@ class DataUserController extends Controller
      */
     public function index()
     {
-
-        $dtUser = User::orderBy('id','desc')->get();
+        $dtUserPending = User::where('verifikasi','belum')->latest()->get();
+        $dtUser = User::where('verifikasi','sudah')->orderBy('id','desc')->get();
         return view('data_user.index',compact('dtUser'));
 
     }
