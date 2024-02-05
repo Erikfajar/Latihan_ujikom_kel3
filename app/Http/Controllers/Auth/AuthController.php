@@ -38,4 +38,9 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function registrasi(Request $request)
+    {
+        return view('auth_manual.registrasi');
+    }
 }
