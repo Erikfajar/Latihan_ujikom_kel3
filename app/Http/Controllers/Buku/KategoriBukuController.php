@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Buku;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Models\KategoriBuku;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,23 @@ class KategoriBukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash('nama_kategori', $request->nama_kategori);
+        
+        $request->validate(
+            [
+                'nama_kategori' => 'required',
+                
+            ],
+            [
+                'nama_kategori.required' => 'Ketegori buku wajib diisi',
+            ],
+        );
+        $data = [
+            'nama_kategori' => $request->nama_kategori,
+        ];
+        KategoriBuku::create($data);
+        return back()
+        ->with('success', 'Data kategori buku berhasil di tambahkan');
     }
 
     /**
@@ -71,7 +88,22 @@ class KategoriBukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Session::flash('nama_kategori', $request->nama_kategori);
+        
+        $request->validate(
+            [
+                'nama_kategori' => 'required',
+                
+            ],
+            [
+                'nama_kategori.required' => 'Ketegori buku wajib diisi',
+            ],
+        );
+        $data = [
+            'nama_kategori' => $request->nama_kategori,
+        ];
+        KategoriBuku::where('id', $id)->update($data);
+        return back()->with('success', 'successfully updated the data');
     }
 
     /**
@@ -82,6 +114,7 @@ class KategoriBukuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        KategoriBuku::where('id', $id)->delete();
+        return back()->with('success', 'Data kategori buku berhasil di hapus');
     }
 }
