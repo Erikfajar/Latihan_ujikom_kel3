@@ -45,7 +45,10 @@ Route::prefix('dashboard')->group(function(){
     Route::resource('kategori_buku',KategoriBukuController::class);
     Route::resource('koleksi_pribadi',KoleksiPribadiController::class);
     Route::post('koleksi_pribadi/{id}',[KoleksiPribadiController::class,'store'])->name('kolekasi_pribadi_simpan');
-    ROute::resource('kategori_buku_relasi',KategoriBukuRelasiController::class);
+    Route::resource('kategori_buku_relasi',KategoriBukuRelasiController::class);
+
+    Route::get('/export_pdf_buku',[DataBukuController::class, 'export_pdf'])->name('export_pdf_data_buku');
+
 });
 
 
