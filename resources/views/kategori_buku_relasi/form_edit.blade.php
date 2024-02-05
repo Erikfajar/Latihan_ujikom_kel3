@@ -45,8 +45,8 @@
                                                             id="">
                                                             <option value="{{ $dt->kategori_id }}" selected>
                                                                 {{ $dt->kategori->nama_kategori }}</option>
-                                                            @foreach ($dtKategori as $dtKategori)
                                                                 <option value="">Pilih Kategori Buku</option>
+                                                            @foreach ($dtKategori as $dtKategori)
                                                                 <option value="{{ $dtKategori->id }}">
                                                                     {{ $dtKategori->nama_kategori }}</option>
                                                             @endforeach
@@ -61,8 +61,8 @@
                                                         <select name="buku_id" class="form-control select2" id="">
                                                             <option value="{{ $dt->buku_id }}" selected>
                                                                 {{ $dt->buku->judul }}</option>
-                                                            @foreach ($dtBuku as $dtBuku)
                                                                 <option value="">Pilih Buku</option>
+                                                            @foreach ($dtBuku as $dtBuku)
                                                                 <option value="{{ $dtBuku->id }}">{{ $dtBuku->judul }}
                                                                 </option>
                                                             @endforeach

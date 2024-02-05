@@ -136,7 +136,7 @@ class PeminjamanController extends Controller
             'status_peminjaman' => $request->status_peminjaman,
         ];
 
-        Peminjaman::where('id',$id)->up9date($data);
+        Peminjaman::where('id',$id)->update($data);
         return redirect()
             ->route('peminjaman.index')
             ->with('success', 'successfully update data');

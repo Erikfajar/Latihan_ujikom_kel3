@@ -43,8 +43,8 @@
                                                     <div class="col-md-9 mg-t-5 mg-md-t-0">
                                                         <select name="kategori_id" class="form-control select2"
                                                             id="">
+                                                            <option value="" selected>Pilih Kategori Buku</option>
                                                             @foreach ($dtKategori as $dtKategori)
-                                                                <option value="" selected>Pilih Kategori Buku</option>
                                                                 <option value="{{ $dtKategori->id }}">
                                                                     {{ $dtKategori->nama_kategori }}</option>
                                                             @endforeach
@@ -57,8 +57,8 @@
                                                     </div>
                                                     <div class="col-md-9 mg-t-5 mg-md-t-0">
                                                         <select name="buku_id" class="form-control select2" id="">
+                                                            <option value="" selected>Pilih Buku</option>
                                                             @foreach ($dtBuku as $dtBuku)
-                                                                <option value="" selected>Pilih Buku</option>
                                                                 <option value="{{ $dtBuku->id }}">{{ $dtBuku->judul }}
                                                                 </option>
                                                             @endforeach
