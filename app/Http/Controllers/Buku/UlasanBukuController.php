@@ -138,5 +138,7 @@ class UlasanBukuController extends Controller
      */
     public function destroy($id)
     {
+        UlasanBuku::where('id', $id)->delete();
+        return back()->with('success', 'successfully deleted data');
     }
 }
