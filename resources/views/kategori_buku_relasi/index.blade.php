@@ -32,7 +32,8 @@
                                 <div class="d-flex my-auto btn-list justify-content-end">
                                     {{-- <a class="modal-effect btn-sm btn btn-primary" data-bs-effect="effect-rotate-bottom"
                                         data-bs-toggle="modal" href="#modaldemo8"><i class="fa fa-plus"></i> Tambah</a> --}}
-                                        <a href="{{ route('kategori_buku_relasi.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a></a>
+                                    <a href="{{ route('kategori_buku_relasi.create') }}" class="btn btn-sm btn-primary"><i
+                                            class="fa fa-plus"></i> Tambah</a></a>
                                     <button onclick="formImport()" class="btn btn-sm btn-secondary"><i
                                             class="fa fa-upload me-2"></i> Import</button>
                                     <div class="dropdown">
@@ -85,18 +86,18 @@
                                             <td style="text-align: center">{{ $dt->kategori->nama_kategori ?? '' }}</td>
                                             <td style="text-align: center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('kategori_buku.destroy', $dt->id) }}" method="POST"
-                                                    class="d-inline">
+                                                    action="{{ route('kategori_buku_relasi.destroy', $dt->id) }}"
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('kategori_buku_relasi.edit',$dt->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('kategori_buku_relasi.edit', $dt->id) }}"
+                                                        class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-sm btn-danger"><i
                                                             class="fa fa-trash" data-bs-toggle="tooltip"
                                                             title="Delete"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
-                                   
                                     @endforeach
                                 </tbody>
                             </table>
@@ -106,11 +107,11 @@
             </div>
 
         </div>
-    
+
 
     </div>
 
-    
+
     <!-- /container -->
 
     <script>
