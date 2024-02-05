@@ -102,6 +102,32 @@ class UlasanBukuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Session::flash('buku_id', $request->buku_id);
+        Session::flash('ulasan', $request->ulasan);
+        Session::flash('rating', $request->rating);
+
+        $user = Auth::user()->id;
+        $request->validate(
+            [
+                'buku_id' => 'required',
+                'ulasan' => 'required',
+                'rating' => 'required',
+            ],
+            [
+                'buku_id' => 'Judul buku wajib diisi',
+                'ulasan' => 'deskripsikan tentang buku ini',
+                'rating' => 'Rating sesuai pengalaman membacamu ',
+            ]
+        );
+        $data = [
+            'user_id' => $user,
+            'buku_id' => $request->buku_id,
+            'ulasan' => $request->ulasan,
+            'rating' => $request->rating,
+        ];
+
+        UlasanBuku::where('id', $id)->update($data);
+        return back()->with('success', 'successfully updated the data');
     }
 
     /**
