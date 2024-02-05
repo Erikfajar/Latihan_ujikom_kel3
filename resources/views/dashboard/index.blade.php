@@ -114,7 +114,7 @@
                                         <strong>Total</strong>
                                         <span>{{$total_peminjaman}}</span>
                               
-                                    </li>
+                                        </li>
                                 </ul>
                             </div>
                         </div>
