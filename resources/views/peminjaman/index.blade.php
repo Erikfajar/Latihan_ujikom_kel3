@@ -1,23 +1,23 @@
 @extends('template_back.content')
-@section('title', 'Data Kategori Buku')
+@section('title', 'Form Peminjaman Buku')
 @section('content')
-
+    
     <!-- container opened -->
     <div class="container">
 
         <!-- breadcrumb -->
         <div class="breadcrumb-header justify-content-between">
             <div>
-                <h4 class="content-title mb-2">Data Kategori Buku Relasi</h4>
+                <h4 class="content-title mb-2">Data Peminjaman Buku</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item text-white active">Data Kategori Buku Relasi</li>
+                        <li class="breadcrumb-item text-white active">Data Peminjaman Buku</li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <!-- /breadcrumb -->
+
         <div class="row row-sm">
             <div class="col-xl-12 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
@@ -26,14 +26,12 @@
                     <div class="pd-t-10 pd-s-10 pd-e-10 bg-white bd-b">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Data Kategori Buku Relasi</p>
+                                <p>Data Peminjaman Buku</p>
                             </div>
                             <div class="col-md-6">
+                                {{-- <a href="{{ route('data_buku.show') }}" class="btn btn-sm btn-info">+ Peminjam</a> --}}
                                 <div class="d-flex my-auto btn-list justify-content-end">
-                                    {{-- <a class="modal-effect btn-sm btn btn-primary" data-bs-effect="effect-rotate-bottom"
-                                        data-bs-toggle="modal" href="#modaldemo8"><i class="fa fa-plus"></i> Tambah</a> --}}
-                                    <a href="{{ route('kategori_buku_relasi.create') }}" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-plus"></i> Tambah</a></a>
+                             
                                     <button onclick="formImport()" class="btn btn-sm btn-secondary"><i
                                             class="fa fa-upload me-2"></i> Import</button>
                                     <div class="dropdown">
@@ -72,32 +70,39 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center" width="20px">No</th>
+                                        <th style="text-align: center" width="50px">User</th>
                                         <th style="text-align: center" width="120px">Buku</th>
-                                        <th style="text-align: center" width="120px">Kategori</th>
-                                        <th style="text-align: center" width="80px">Action</th>
+                                        <th style="text-align: center" width="120px">TGL Peminjaman</th>
+                                        <th style="text-align: center" width="120px">TGL Pengembalian</th>
+                                        <th style="text-align: center" width="80px">Status</th>
+                                        <th style="text-align: center" width="50px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no=1; @endphp
-                                    @foreach ($dtKategoriRelasi as $dt)
+                                    @foreach ($dtPeminjam as $dt)
                                         <tr>
                                             <td style="text-align: center">{{ $no++ }}</td>
+                                            <td style="text-align: center">{{ $dt->user->nama_lengkap ?? '' }}</td>
                                             <td style="text-align: center">{{ $dt->buku->judul ?? '' }}</td>
-                                            <td style="text-align: center">{{ $dt->kategori->nama_kategori ?? '' }}</td>
+                                            <td style="text-align: center">{{ $dt->tanggal_peminjaman ?? '' }}</td>
+                                            <td style="text-align: center">{{ $dt->tanggal_pengembalian ?? '' }}</td>
+                                           
+                                            <td style="text-align: center">{{ $dt->status_peminjaman ?? '' }}</td>
                                             <td style="text-align: center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('kategori_buku_relasi.destroy', $dt->id) }}"
-                                                    method="POST" class="d-inline">
+                                                    action="{{ route('peminjaman.destroy', $dt->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('kategori_buku_relasi.edit', $dt->id) }}"
-                                                        class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <a class="modal-effect btn btn-sm btn-primary"
+                                                        data-bs-effect="effect-scale" data-bs-toggle="modal"
+                                                        href="#modaldemo1{{ $dt->id }}"><i class="fa fa-edit"></i></a>
                                                     <button type="submit" class="btn btn-sm btn-danger"><i
-                                                            class="fa fa-trash" data-bs-toggle="tooltip"
-                                                            title="Delete"></i></button>
+                                                            class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
+                                        @include('peminjaman.modal_edit')
                                     @endforeach
                                 </tbody>
                             </table>
@@ -108,11 +113,11 @@
 
         </div>
 
-
     </div>
-
-
     <!-- /container -->
+
+    
+
 
     <script>
         $(function() {
@@ -120,7 +125,6 @@
             $('.select2').select2({
                 width: 'resolve'
             });
-
 
             // init datatable.
             $('#tbl_list').DataTable({
@@ -163,8 +167,6 @@
             );
         }
     </script>
-
-
 
 
 @endsection

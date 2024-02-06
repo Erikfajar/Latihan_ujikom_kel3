@@ -7,6 +7,8 @@ use App\Models\Buku;
 use App\Models\KategoriBuku;
 use App\Models\KategoriBuku_Relasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class KategoriBukuRelasiController extends Controller
 {
@@ -41,7 +43,31 @@ class KategoriBukuRelasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash('kategori_id', $request->kategori_id);
+        Session::flash('buku_id', $request->buku_id);
+        
+        $request->validate(
+            [
+                'kategori_id' => 'required',
+                'buku_id' => 'required',
+                
+            ],
+            [
+                'kategori_id.required' => 'Ketegori buku wajib diisi',
+                'buku_id.required' => 'Buku wajib diisi',
+                
+            ],
+        );
+        $data = [
+            'kategori_id' => $request->kategori_id,
+            'buku_id' => $request->buku_id,
+           
+        ];
+        KategoriBuku_Relasi::create($data);
+        return redirect()
+        ->route('kategori_buku_relasi.index')
+        ->with('success', 'Data kategori buku berhasil di tambahkan');
+       
     }
 
     /**
@@ -78,7 +104,30 @@ class KategoriBukuRelasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Session::flash('kategori_id', $request->kategori_id);
+        Session::flash('buku_id', $request->buku_id);
+        
+        $request->validate(
+            [
+                'kategori_id' => 'required',
+                'buku_id' => 'required',
+                
+            ],
+            [
+                'kategori_id.required' => 'Ketegori buku wajib diisi',
+                'buku_id.required' => 'Buku wajib diisi',
+                
+            ],
+        );
+        $data = [
+            'kategori_id' => $request->kategori_id,
+            'buku_id' => $request->buku_id,
+           
+        ];
+        KategoriBuku_Relasi::where('id', $id)->update($data);
+        return redirect()
+        ->route('kategori_buku_relasi.index')
+        ->with('success', 'Data kategori buku berhasil di ubah');
     }
 
     /**
@@ -89,6 +138,7 @@ class KategoriBukuRelasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        KategoriBuku_Relasi::where('id', $id)->delete();
+        return back()->with('success', 'Data kategori buku berhasil di hapus');
     }
 }

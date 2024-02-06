@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
@@ -22,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('nama_lengkap');
             $table->text('alamat');
             $table->enum('role', ['administrator', 'petugas', 'peminjam']);
+            $table->enum('verifikasi', ['belum', 'sudah']);
             $table->timestamps();
         });
     }
