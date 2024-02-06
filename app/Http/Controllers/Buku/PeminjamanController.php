@@ -18,7 +18,10 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-       
+        $dtPeminjam = Peminjaman::with('user', 'buku')
+             ->orderBy('id', 'desc')
+             ->get();
+        return view('peminjaman.index', compact('dtPeminjam')); 
     }
 
     /**
@@ -39,7 +42,38 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-       
+        Session::flash('buku_id', $request->buku_id);
+        Session::flash('tanggal_peminjaman', $request->tanggal_peminjaman);
+        Session::flash('tanggal_pengembalian', $request->tanggal_pengembalian);
+        Session::flash('status_peminjaman', $request->status_peminjaman);
+
+        $user = Auth::user()->id;
+        $request->validate(
+            [
+                'buku_id' => 'required',
+                'tanggal_peminjaman' => 'required',
+                'tanggal_pengembalian' => 'required',
+                'status_peminjaman' => 'required',
+            ],
+            [
+                'buku_id.required' => 'buku_id wajib diisi',
+                'tanggal_peminjaman.required' => 'TanggalPeminjaman wajib diisi',
+                'tanggal_pengembalian.required' => 'TanggalPengembalian wajib diisi',
+                'status_peminjaman.required' => 'StatusPeminjaman wajib diisi',
+            ],
+        );
+        $data = [
+            'user_id' => $user,
+            'buku_id' => $request->buku_id,
+            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'tanggal_pengembalian' => $request->tanggal_pengembalian,
+            'status_peminjaman' => $request->status_peminjaman,
+        ];
+
+        Peminjaman::create($data);
+        return redirect()
+            ->route('peminjaman.index')
+            ->with('success', 'successfully added data'); 
     }
 
     /**
@@ -50,7 +84,8 @@ class PeminjamanController extends Controller
      */
     public function show($id)
     {
-    
+        $dtBuku = Buku::find($id);
+        return view('peminjaman.form_create', compact('dtBuku'));
     }
 
     /**
@@ -73,7 +108,38 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        Session::flash('buku_id', $request->buku_id);
+        Session::flash('tanggal_peminjaman', $request->tanggal_peminjaman);
+        Session::flash('tanggal_pengembalian', $request->tanggal_pengembalian);
+        Session::flash('status_peminjaman', $request->status_peminjaman);
+
+        $user = Auth::user()->id;
+        $request->validate(
+            [
+                'buku_id' => 'required',
+                'tanggal_peminjaman' => 'required',
+                'tanggal_pengembalian' => 'required',
+                'status_peminjaman' => 'required',
+            ],
+            [
+                'buku_id.required' => 'buku_id wajib diisi',
+                'tanggal_peminjaman.required' => 'TanggalPeminjaman wajib diisi',
+                'tanggal_pengembalian.required' => 'TanggalPengembalian wajib diisi',
+                'status_peminjaman.required' => 'StatusPeminjaman wajib diisi',
+            ],
+        );
+        $data = [
+            'user_id' => $user,
+            'buku_id' => $request->buku_id,
+            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'tanggal_pengembalian' => $request->tanggal_pengembalian,
+            'status_peminjaman' => $request->status_peminjaman,
+        ];
+
+        Peminjaman::where('id',$id)->update($data);
+        return redirect()
+            ->route('peminjaman.index')
+            ->with('success', 'successfully update data');
     }
 
     /**
@@ -84,6 +150,7 @@ class PeminjamanController extends Controller
      */
     public function destroy($id)
     {
-       
+        Peminjaman::where('id', $id)->delete();
+        return back()->with('success', 'successfully deleted data');
     }
 }

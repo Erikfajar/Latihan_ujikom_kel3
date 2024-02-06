@@ -31,25 +31,25 @@ use App\Http\Controllers\DataUserController;
 // });
 
 // ROUTE LOGIN
-Route::get('',[AuthController::class, 'index'])->name('login');
-Route::post('/auth',[AuthController::class, 'auth'])->name('auth');
+Route::get('', [AuthController::class, 'index'])->name('login');
+Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
+Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
+Route::post('registrasi/auth', [AuthController::class, 'auth_regis'])->name('auth_regis');
+
 
 // ROUTE SETELAH LOGIN
+
 Route::prefix('dashboard')->group(function(){
     Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
     Route::resource('data_buku',DataBukuController::class);
     Route::resource('peminjaman',PeminjamanController::class);
     Route::resource('data_user',DataUserController::class);
+    Route::post('data_user_confirm/{id}',[DataUserController::class, 'confirm'])->name('data_user_confirm');
     Route::resource('ulasan_buku',UlasanBukuController::class);
     Route::resource('kategori_buku',KategoriBukuController::class);
     Route::resource('koleksi_pribadi',KoleksiPribadiController::class);
     Route::post('koleksi_pribadi/{id}',[KoleksiPribadiController::class,'store'])->name('kolekasi_pribadi_simpan');
     Route::resource('kategori_buku_relasi',KategoriBukuRelasiController::class);
-
     Route::get('/export_pdf_buku',[DataBukuController::class, 'export_pdf'])->name('export_pdf_data_buku');
-
 });
-
-
-

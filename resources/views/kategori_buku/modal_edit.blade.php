@@ -11,8 +11,8 @@
                 <!-- message info -->
                 {{-- @include('_component.message') --}}
                 <div class="pd-10 pd-sm-20 bg-gray-100">
-                    <form action="{{ route('kategori_buku.store') }}" method="post">
-                        @csrf
+                    <form action="{{ route('kategori_buku.update',$dt->id) }}" method="post">
+                        @csrf @method('PUT')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
