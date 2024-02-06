@@ -91,11 +91,11 @@
                                             <td>{{ $dtPending->alamat ?? '' }}</td>
 
                                             <td style="text-align: center">
-                                                <form action="{{ route('data_user_confirm',$dtPending->id) }}" method="post" class="d-inline">
+                                                <form action="{{ route('data_user_confirm',$dtPending->id) }}" onsubmit="return confirm('Apakah anda yakin?')" method="post" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-outline-success"><i class="fa fa-check fa-lg"></i></button>
                                                 </form>
-                                                <form action="" method="post" class="d-inline">
+                                                <form action="" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin?')">
                                                     <button class="btn btn-sm btn-outline-danger"><i class="fas fa-times fa-lg"></i></button>
                                                 </form>
                                             </td>
