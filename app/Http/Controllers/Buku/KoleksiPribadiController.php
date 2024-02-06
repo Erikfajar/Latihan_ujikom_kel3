@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Buku;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\KoleksiPribadi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,5 +95,20 @@ class KoleksiPribadiController extends Controller
     {
         KoleksiPribadi::find($id)->delete();
         return back()->with('success','Berhasil di hapus');
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $data = KoleksiPribadi::latest();
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('koleksi_pribadi.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_koleksi_pribadi';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }

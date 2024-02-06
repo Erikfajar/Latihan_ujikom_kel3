@@ -158,11 +158,19 @@
             );
         }
 
-        function exportPdf() {
+        function exportExcel() {
             var f1 = $('#f1').val();
             var s = $('.whatever').val();
             window.open(
-                "data_barang/export_pdf?s=" + s + "&f1=" + f1,
+                "data_barang/export_excel?s=" + s + "&f1=" + f1,
+                '_blank' // <- This is what makes it open in a new window.
+            );
+        }
+            function exportPdf() {
+            // var f1 = $('#f1').val();
+            var s = $('.whatever').val();
+            window.open(
+                "export_pdf_koleksi_pribadi?s=" + s,
                 '_blank' // <- This is what makes it open in a new window.
             );
         }
