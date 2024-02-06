@@ -40,7 +40,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('data_buku', DataBukuController::class);
     Route::resource('peminjaman', PeminjamanController::class);
-    Route::resource('data_user', DataUserController::class)->middleware('hakAkses:administrator,peminjam');
+    Route::resource('data_user', DataUserController::class);
     Route::resource('ulasan_buku', UlasanBukuController::class);
     Route::resource('kategori_buku', KategoriBukuController::class);
     Route::resource('koleksi_pribadi', KoleksiPribadiController::class);
