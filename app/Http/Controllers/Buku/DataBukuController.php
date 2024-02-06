@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Buku;
 
-use App\Http\Controllers\Controller;
 use App\Models\Buku;
-use Illuminate\Support\Facades\Session;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class DataBukuController extends Controller
 {
@@ -137,5 +139,20 @@ class DataBukuController extends Controller
     {
         Buku::where('id', $id)->delete();
         return back()->with('success', 'successfully deleted data');
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $data = Buku::orderBy('judul','asc');
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('data_buku.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_data_buku';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }

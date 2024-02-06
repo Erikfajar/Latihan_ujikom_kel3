@@ -42,7 +42,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="javascript:void(0)"
                                                 onclick="exportExcel()">Excel</a>
-                                            <a class="dropdown-item" href="javascript:void(0)" onclick="exportPdf()">PDF</a>
+                                            <a class="dropdown-item" href="javascript:void(0)"  onclick="exportPdf()">PDF</a>
                                         </div>
                                     </div>
                                 </div>
@@ -52,21 +52,9 @@
                     <div class="card-body">
                         <!-- message info -->
                         @include('_component.message')
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="form-label mt-2 mb-0">Kategori Buku</label>
-                                <select id="f1" class="form-control select2" onchange="reload_table()">
-                                    {{-- @php $db = DB::table('tm_kategoribarang')->select('*')->orderBy('nama','ASC')->get(); @endphp
-                                <option value="">=== semua ===</option>
-                                @foreach ($db as $key => $val)
-                                <option value="{{$val->id}}" @if (request()->get('f1') == $val->id) selected @endif>{{$val->nama}}</option>
-                                @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
                         <hr>
                         <div class="table-responsive">
-                            <table id="tbl_list" class="table table-sm table-striped table-bordered tx-14" width="100%">
+                            <table id="responsive-datatable" class="table table-sm table-striped table-bordered tx-14" width="100%">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center" width="20px">No</th>
@@ -136,26 +124,6 @@
     </div>
     <!-- /container -->
 
-    {{-- <script>
-        $(function() {
-            'use strict'
-            // showing modal with effect
-            $('.modal-effect').on('click', function(e) {
-                e.preventDefault();
-                var effect = $(this).attr('data-bs-effect');
-                $('#modaldemo8{{ $dt->id }}').addClass(effect);
-            });
-            // hide modal with effect
-            $('#modaldemo8{{ $dt->id }}').on('hidden.bs.modal', function(e) {
-                $(this).removeClass(function(index, className) {
-                    return (className.match(/(^|\s)effect-\S+/g) || []).join(' ');
-                });
-            });
-
-        });
-    </script> --}}
-
-
     <script>
         $(function() {
             // formelement
@@ -197,10 +165,10 @@
         }
 
         function exportPdf() {
-            var f1 = $('#f1').val();
+            // var f1 = $('#f1').val();
             var s = $('.whatever').val();
             window.open(
-                "data_barang/export_pdf?s=" + s + "&f1=" + f1,
+                "export_pdf_buku?s=" + s,
                 '_blank' // <- This is what makes it open in a new window.
             );
         }
