@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin1@gmail.com',
             'nama_lengkap' => 'admin_satu',
             'alamat' => 'Subang',
-            'role' => 'administrator'
+            'role' => 'administrator',
+            'verifikasi' => 'sudah'
         ]);
         User::create([
             'username' => 'petugas1',
@@ -30,7 +31,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'petugas1@gmail.com',
             'nama_lengkap' => 'petugas_satu',
             'alamat' => 'Subang',
-            'role' => 'petugas'
+            'role' => 'petugas',
+            'verifikasi' => 'sudah'
         ]);
         User::create([
             'username' => 'peminjamn1',
@@ -38,7 +40,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'peminjam1@gmail.com',
             'nama_lengkap' => 'peminjam_satu',
             'alamat' => 'Subang',
-            'role' => 'peminjam'
+            'role' => 'peminjam',
+            'verifikasi' => 'sudah'
         ]);
     }
 }

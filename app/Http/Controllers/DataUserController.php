@@ -15,10 +15,9 @@ class DataUserController extends Controller
      */
     public function index()
     {
-
-        $dtUser = User::orderBy('id','desc')->get();
-        return view('data_user.index',compact('dtUser'));
-
+        $dtUserPending = User::where('verifikasi','belum')->latest()->get();
+        $dtUser = User::where('verifikasi','sudah')->orderBy('id','desc')->get();
+        return view('data_user.index',compact('dtUser','dtUserPending'));
     }
 
     /**
@@ -39,26 +38,31 @@ class DataUserController extends Controller
      */
     public function store(Request $request)
     {
+        Session::flash('username', $request->username);
+        Session::flash('email', $request->email);
+        Session::flash('password', $request->password);
+        Session::flash('nama_lengkap', $request->nama_lengkap);
+        Session::flash('alamat', $request->alamat);
+        Session::flash('role', $request->role);
 
-        Session::flash('username',$request->username);
-        Session::flash('email',$request->email);
-        Session::flash('password',$request->password);
-        Session::flash('nama_lengkap',$request->nama_lengkap);
-        Session::flash('alamat',$request->alamat);
-
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:5',
-            'nama_lengkap' => 'required|max:30',
-            'alamat' => 'required'
-        ],[
-            'username.required' => 'Username wajib di isi' ,
-            'email.required' => 'Email wajib di isi' ,
-            'password.required' => 'Password wajib di isi',
-            'nama_lengkap.required' => 'Nama Lengkap wajib di isi',
-            'alamat.required' => 'Alamat wajib di isi',
-        ]);
+        $request->validate(
+            [
+                'username' => 'required',
+                'email' => 'required',
+                'password' => 'required|min:5',
+                'nama_lengkap' => 'required|max:30',
+                'alamat' => 'required',
+                'role' => 'required',
+            ],
+            [
+                'username.required' => 'Username wajib di isi',
+                'email.required' => 'Email wajib di isi',
+                'password.required' => 'Password wajib di isi',
+                'nama_lengkap.required' => 'Nama Lengkap wajib di isi',
+                'alamat.required' => 'Alamat wajib di isi',
+                'role.required' => 'Role wajib di isi',
+            ],
+        );
 
         $data = [
             'username' => $request->username,
@@ -66,13 +70,12 @@ class DataUserController extends Controller
             'password' => bcrypt($request->password),
             'nama_lengkap' => $request->nama_lengkap,
             'alamat' => $request->alamat,
+            'role' => $request->role,
         ];
 
-        
-
+        // dd($data);
         User::create($data);
-        return back()->with('success','Data user berhasil di simpan');
-
+        return back()->with('success', 'Berhasil melakukan registrasi');
     }
 
     /**
@@ -106,25 +109,28 @@ class DataUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Session::flash('username',$request->username);
-        Session::flash('email',$request->email);
-        Session::flash('password',$request->password);
-        Session::flash('nama_lengkap',$request->nama_lengkap);
-        Session::flash('alamat',$request->alamat);
+        Session::flash('username', $request->username);
+        Session::flash('email', $request->email);
+        Session::flash('password', $request->password);
+        Session::flash('nama_lengkap', $request->nama_lengkap);
+        Session::flash('alamat', $request->alamat);
 
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:5',
-            'nama_lengkap' => 'required|max:30',
-            'alamat' => 'required'
-        ],[
-            'username.required' => 'Username wajib di isi' ,
-            'email.required' => 'Email wajib di isi' ,
-            'password.required' => 'Password wajib di isi',
-            'nama_lengkap.required' => 'Nama Lengkap wajib di isi',
-            'alamat.required' => 'Alamat wajib di isi',
-        ]);
+        $request->validate(
+            [
+                'username' => 'required',
+                'email' => 'required',
+                'password' => 'required|min:5',
+                'nama_lengkap' => 'required|max:30',
+                'alamat' => 'required',
+            ],
+            [
+                'username.required' => 'Username wajib di isi',
+                'email.required' => 'Email wajib di isi',
+                'password.required' => 'Password wajib di isi',
+                'nama_lengkap.required' => 'Nama Lengkap wajib di isi',
+                'alamat.required' => 'Alamat wajib di isi',
+            ],
+        );
 
         $data = [
             'username' => $request->username,
@@ -134,11 +140,8 @@ class DataUserController extends Controller
             'alamat' => $request->alamat,
         ];
 
-        
-
         User::where('id', $id)->update($data);
-        return back()->with('success','Data User berhasil di ubah');
-
+        return back()->with('success', 'Data User berhasil di ubah');
     }
 
     /**
@@ -150,7 +153,19 @@ class DataUserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return back()->with('success','Data user berhasil di hapus');
+        return back()->with('success', 'Data user berhasil di hapus');
+    }
+
+    public function confirm(Request $request, $id)
+    {
+
+        // $dtUser = User::find($id);
+        
+        $data = ['verifikasi' => 'sudah'];
+       
+        User::where('id',$id)->update($data);
+        return back()->with('success');
 
     }
+
 }

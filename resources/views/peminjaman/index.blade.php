@@ -168,5 +168,5 @@
         }
     </script>
 
-@include('peminjaman.modal_create')
+
 @endsection
