@@ -32,7 +32,7 @@ Route::get('/',[AuthController::class, 'index'])->name('login');
 Route::post('/auth',[AuthController::class, 'auth'])->name('auth');
 
 // ROUTE SETELAH LOGIN
-Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::prefix('dashboard')->group(function(){
     Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
     Route::resource('data_buku',DataBukuController::class);
