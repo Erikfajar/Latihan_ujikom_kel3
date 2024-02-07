@@ -67,8 +67,7 @@ class UlasanBukuController extends Controller
         ];
 
         UlasanBuku::create($data);
-        return redirect()
-            ->route('UlasanBuku.index')
+        return redirect()->route('ulasan_buku.index')
             ->with('succes', 'succesfully added data');
     }
 
@@ -146,7 +145,7 @@ class UlasanBukuController extends Controller
 
     public function export_pdf(Request $request)
     {
-        $data = Buku::orderBy('judul', 'asc');
+        $data = UlasanBuku::orderBy('id', 'desc');
         $data = $data->get();
 
         // Pass parameters to the export view
