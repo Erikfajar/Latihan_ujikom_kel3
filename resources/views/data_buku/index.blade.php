@@ -21,6 +21,8 @@
         <div class="row row-sm">
             <div class="col-xl-12 col-lg-12 col-sm-12 col-md-12">
                 <div class="card">
+
+
                     <div class="pd-t-10 pd-s-10 pd-e-10 bg-white bd-b">
                         <div class="row">
                             <div class="col-md-6">
@@ -118,6 +120,7 @@
         </div>
         @include('data_buku.modal_create')
         @include('data_buku.modal_import')
+
     </div>
     <!-- /container -->
 

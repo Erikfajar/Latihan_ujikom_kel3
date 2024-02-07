@@ -74,5 +74,5 @@
             </form>
         </div>
     </div>
-</div> 
+</div>
 <!-- End Modal effects-->

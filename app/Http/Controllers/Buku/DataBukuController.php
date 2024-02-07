@@ -29,7 +29,7 @@ class DataBukuController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
