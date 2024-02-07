@@ -98,7 +98,6 @@
 
         </div>
         @include('kategori_buku.modal_create')
-
     </div>
     <!-- /container -->
 

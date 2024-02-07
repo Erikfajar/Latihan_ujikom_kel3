@@ -27,7 +27,7 @@ class KategoriBukuController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
