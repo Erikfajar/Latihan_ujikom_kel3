@@ -159,7 +159,7 @@
                                         <th width="20px">No</th>
                                         <th width="50px">Username</th>
                                         <th width="50px">Email</th>
-                                        <th width="120px">Nama Lengap</th>
+                                        <th width="120px">Nama Lengkap</th>
                                         <th width="120px">Alamat</th>
 
                                         <th width="80px">Action</th>
@@ -268,7 +268,7 @@
             var f1 = $('#f1').val();
             var s = $('.whatever').val();
             window.open(
-                "data_barang/export_pdf?s=" + s + "&f1=" + f1,
+                "export_pdf_user?s=" + s + "&f1=" + f1,
                 '_blank' // <- This is what makes it open in a new window.
             );
         }
