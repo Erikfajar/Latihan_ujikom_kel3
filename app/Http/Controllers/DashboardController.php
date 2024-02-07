@@ -21,7 +21,6 @@ class DashboardController extends Controller
         $total_peminjaman = Peminjaman::count();
         $total_kategoribuku_relasi = KategoriBuku_Relasi::count();
       
-
         return view('dashboard.index'
         ,
         [
