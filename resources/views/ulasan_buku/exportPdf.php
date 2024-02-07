@@ -40,11 +40,11 @@
             @foreach ($data as $dt)
             <!-- MEMBUAT PERULANGAN UNTUK MENAMPILKAN HASIL DARI DB -->
             <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $dt->judul ?? '' }}</td>
-                <td>{{ $dt->nama ?? '' }}</td>
-                <td>{{ $dt->ulasan ?? '' }}</td>
-                <td>{{ $dt->rating ?? '' }}</td>
+                   <td>{{$no++}}</td>
+                   <td>{{$dt->user->nama_lengkap??''}}</td>
+                   <td>{{$dt->buku->judul??''}}</td>
+                    <td>{{$dt->ulasan??''}}</td>
+                    <td>{{$dt->rating??''}}</td>
 
             </tr>
             @endforeach
