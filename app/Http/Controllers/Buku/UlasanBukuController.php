@@ -146,7 +146,7 @@ class UlasanBukuController extends Controller
 
     public function export_pdf(Request $request)
     {
-        $data = Buku::orderBy('judul', 'asc');
+        $data = UlasanBuku::orderBy('id', 'desc');
         $data = $data->get();
 
         // Pass parameters to the export view
