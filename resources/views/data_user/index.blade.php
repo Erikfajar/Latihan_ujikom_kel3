@@ -66,7 +66,7 @@
                         </div>
                         <hr>
                         <div class="table-responsive">
-                            <table id="tbl_list" class="table table-sm table-striped table-bordered tx-14" width="100%">
+                            <table  id="example3" class="table table-sm table-striped table-bordered tx-14" width="100%">
                                 <thead>
                                     <tr>
                                         <th width="20px">No</th>
@@ -153,7 +153,7 @@
                         </div>
                         <hr>
                         <div class="table-responsive">
-                            <table id="tbl_list" class="table table-sm table-striped table-bordered tx-14" width="100%">
+                            <table id="responsive-datatable" class="table table-sm table-striped table-bordered tx-14" width="100%">
                                 <thead>
                                     <tr>
                                         <th width="20px">No</th>
