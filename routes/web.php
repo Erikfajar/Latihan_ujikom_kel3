@@ -52,6 +52,7 @@ Route::prefix('dashboard')->group(function(){
     Route::post('koleksi_pribadi/{id}',[KoleksiPribadiController::class,'store'])->name('kolekasi_pribadi_simpan');
     Route::resource('kategori_buku_relasi',KategoriBukuRelasiController::class);
     Route::get('/export_pdf_buku',[DataBukuController::class, 'export_pdf'])->name('export_pdf_data_buku');
+    Route::get('/export_pdf_ulasan_buku',[UlasanBukuController::class, 'export_pdf'])->name('export_pdf_ulasan_buku');
     Route::get('/export_pdf_kategori_buku_relasi',[KategoriBukuRelasiController::class, 'export_pdf'])->name('export_pdf_kategori_buku_relasi');
     Route::get('/export_pdf_kategori_buku',[KategoriBukuController::class, 'export_pdf'])->name('export_pdf_kategori_buku');
 });
