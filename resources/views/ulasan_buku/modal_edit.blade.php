@@ -53,7 +53,7 @@
                                                 <label class="form-label mg-b-0">Ulasan Buku </label>
                                             </div>
                                             <div class="col-md-9 mg-t-5 mg-md-t-0">
-                                               <textarea class="form-control " placeholder="Masukan Ulasan Buku" name="ulasan_buku" id="" cols="30" rows="10">{{old('ulasan_buku')}}</textarea>
+                                               <textarea class="form-control " placeholder="Masukan Ulasan Buku" name="ulasan" id="" cols="30" rows="10">{{old('ulasan_buku')}}</textarea>
                                             </div>
                                         </div>
                                     </div>

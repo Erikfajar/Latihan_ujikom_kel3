@@ -67,8 +67,7 @@ class UlasanBukuController extends Controller
         ];
 
         UlasanBuku::create($data);
-        return redirect()
-            ->route('UlasanBuku.index')
+        return redirect()->route('ulasan_buku.index')
             ->with('succes', 'succesfully added data');
     }
 
