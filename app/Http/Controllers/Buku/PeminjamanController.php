@@ -8,6 +8,7 @@ use App\Models\Peminjaman;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PeminjamanController extends Controller
 {
@@ -152,5 +153,19 @@ class PeminjamanController extends Controller
     {
         Peminjaman::where('id', $id)->delete();
         return back()->with('success', 'successfully deleted data');
+    }
+    public function export_pdf(Request $request)
+    {
+        $data = Peminjaman::latest();
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('peminjaman.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_peminjaman';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }

@@ -166,6 +166,14 @@
                 '_blank' // <- This is what makes it open in a new window.
             );
         }
+        function exportPdf() {
+            // var f1 = $('#f1').val();
+            var s = $('.whatever').val();
+            window.open(
+                "export_pdf_peminjaman?s=" + s,
+                '_blank' // <- This is what makes it open in a new window.
+            );
+        }
     </script>
 
 
