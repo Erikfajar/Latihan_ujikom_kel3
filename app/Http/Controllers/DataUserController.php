@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class DataUserController extends Controller
@@ -154,6 +157,21 @@ class DataUserController extends Controller
     {
         User::find($id)->delete();
         return back()->with('success', 'Data user berhasil di hapus');
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $data = User::latest();
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('data_user.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_data_user';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 
     public function confirm(Request $request, $id)

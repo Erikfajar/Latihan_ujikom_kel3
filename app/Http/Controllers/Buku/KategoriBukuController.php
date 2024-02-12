@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Buku;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Models\KategoriBuku;
@@ -27,7 +28,7 @@ class KategoriBukuController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -116,5 +117,20 @@ class KategoriBukuController extends Controller
     {
         KategoriBuku::where('id', $id)->delete();
         return back()->with('success', 'Data kategori buku berhasil di hapus');
+    }
+
+    public function export_pdf(Request $request)
+    {
+        $data = KategoriBuku::orderBy('id','desc');
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf =PDF::loadview('kategori_buku.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_kategori_buku';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }

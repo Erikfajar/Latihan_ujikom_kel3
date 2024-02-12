@@ -98,7 +98,6 @@
 
         </div>
         @include('kategori_buku.modal_create')
-
     </div>
     <!-- /container -->
 
@@ -145,7 +144,7 @@
 
         function reload_table() {
             var f1 = $('#f1').val();
-            window.location.href = "data_barang?f1=" + f1;
+            window.location.href = "kategori_buku?f1=" + f1;
         }
 
         function formImport() {
@@ -157,7 +156,7 @@
             var f1 = $('#f1').val();
             var s = $('.whatever').val();
             window.open(
-                "data_barang/export_excel?s=" + s + "&f1=" + f1,
+                "kategori_buku/export_excel?s=" + s + "&f1=" + f1,
                 '_blank' // <- This is what makes it open in a new window.
             );
         }
@@ -166,7 +165,7 @@
             var f1 = $('#f1').val();
             var s = $('.whatever').val();
             window.open(
-                "data_barang/export_pdf?s=" + s + "&f1=" + f1,
+                "export_pdf_kategori_buku?s=" + s ,
                 '_blank' // <- This is what makes it open in a new window.
             );
         }

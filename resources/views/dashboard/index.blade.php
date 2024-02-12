@@ -2,7 +2,6 @@
 @section('title', 'Dashboard')
 @section('content')
 
-
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Buku;
 
+use App\Models\KategoriBuku_Relasi;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
 use App\Models\KategoriBuku;
-use App\Models\KategoriBuku_Relasi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
 
 class KategoriBukuRelasiController extends Controller
 {
@@ -139,6 +140,21 @@ class KategoriBukuRelasiController extends Controller
     public function destroy($id)
     {
         KategoriBuku_Relasi::where('id', $id)->delete();
-        return back()->with('success', 'Data kategori buku berhasil di hapus');
+        return back()->with('success', 'Data kategori buku relasi berhasil di hapus');
+    }
+    
+    public function export_pdf(Request $request)
+    {
+        $data = KategoriBuku_Relasi::latest();
+        $data = $data->get();
+
+        // Pass parameters to the export view
+        $pdf = PDF::loadview('kategori_buku_relasi.exportPdf', ['data'=>$data]);
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // SET FILE NAME
+        $filename = date('YmdHis') . '_kategori_buku_relasi';
+        // Download the Pdf file
+        return $pdf->download($filename.'.pdf');
     }
 }
